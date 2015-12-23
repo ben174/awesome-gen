@@ -1,0 +1,30 @@
+
+.board {
+  height: 800px;
+  width: 300px;
+  display: inline-block;
+  content: 'nothing';
+  font-family: monospace;
+  font-size: 17px;
+  letter-spacing: 8px;
+}
+
+
+.color1 {
+  color: #F00;
+}
+.color2 {
+  color: #F60;
+}
+.color3 {
+  color: #960;
+}
+.color4 {
+  color: #906;
+}
+.color5 {
+  color: #F06;
+}
+.color6 {
+  color: #309;
+}
