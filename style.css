@@ -1,14 +1,28 @@
 
-.board {
+.board-container {
   height: 800px;
   width: 300px;
   display: inline-block;
-  content: 'nothing';
+  position: relative;
+}
+
+.board {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
   font-family: monospace;
   font-size: 17px;
   letter-spacing: 8px;
 }
 
+.board-container:first-of-type>.board.overlay {
+  left: -3px;
+}
+.board-container:last-of-type>.board.overlay {
+  left: 3px;
+}
 
 .color1 {
   color: #F00;
