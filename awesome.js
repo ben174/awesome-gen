@@ -1,11 +1,15 @@
 var awesome = {
-    width: 15,
-    height: 20,
+    width: 12,
+    height: 15,
     alphabet: 'ABCDEFGHIJKLMNOPQRSTUVWXYZ'.split(''),
     randLetter: function() {
         return awesome.alphabet[Math.floor(Math.random() * this.alphabet.length)];
     },
     init: function() {
+        $('#message').keyup(awesome.generate);
+        awesome.generate();
+    },
+    generate: function() {
         awesome.genBoard();
         awesome.genOverlay();
         awesome.whiteOutBoard();
@@ -35,6 +39,7 @@ var awesome = {
         $('.overlay').html(text);
     },
     genBoard: function() {
+        awesome.board = [];
         for(var y=0;y<awesome.height;y++) {
             line = []
             for(var x=0;x<awesome.width;x++) {
@@ -42,10 +47,10 @@ var awesome = {
             }
             awesome.board.push(line);
         }
-        console.table(awesome.board);
     },
     genOverlay: function() {
-        var startLine = (awesome.height/2) - (awesome.lines.length/2);
+        awesome.overlay = [];
+        var startLine = (awesome.height/2) - (awesome.getLines().length/2);
         for (var y=0;y<startLine;y++) {
             var line = []
             // surely i can do this better, e.g. python (' ' * width)
@@ -54,29 +59,28 @@ var awesome = {
             }
             awesome.overlay.push(line);
         }
-        $(awesome.lines).each(function(y, line) {
+        $(awesome.getLines()).each(function(y, line) {
             var line = awesome.pad(line, awesome.width, ' ', 3).split('');
             awesome.overlay.push(line)
         });
-        console.table(awesome.overlay);
     },
     whiteOutBoard: function() { 
         $(awesome.overlay).each(function(y, line) {
             $(line).each(function(x, letter) {
                 if(letter != '&nbsp;' && letter != ' ') {
                     awesome.board[y][x] = '&nbsp;';
-
                 }
             });
         });
-
     },
     board: [],
     overlay: [],
     getRandomInt: function(min, max) {
         return Math.floor(Math.random() * (max - min)) + min;
     },
-    lines: ['YOU', 'ARE', 'AWESOME'],
+    getLines: function() {
+        return $('#message').val().toUpperCase().split(' ');
+    },
     pad: function(str, len, pad, dir) {
         // stolen from http://www.webtoolkit.info/javascript-pad.html
         var STR_PAD_LEFT = 1;

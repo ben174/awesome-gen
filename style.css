@@ -1,7 +1,6 @@
-
 .board-container {
-  height: 800px;
-  width: 300px;
+  height: 325px;
+  width: 230px;
   display: inline-block;
   position: relative;
 }
@@ -18,10 +17,10 @@
 }
 
 .board-container:first-of-type>.board.overlay {
-  left: -3px;
+  left: -2px;
 }
 .board-container:last-of-type>.board.overlay {
-  left: 3px;
+  left: 2px;
 }
 
 .color1 {
@@ -41,4 +40,11 @@
 }
 .color6 {
   color: #309;
+}
+
+textarea {
+  width: 400px;
+  font-family: monospace;
+  font-size: 18px;
+  height: 90px;
 }
